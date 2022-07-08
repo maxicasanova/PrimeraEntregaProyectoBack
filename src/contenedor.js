@@ -108,9 +108,8 @@ class Contenedor{
             let data  = await fs.promises.readFile(`./${this.nombre}`, 'utf-8');
             let dataArr = JSON.parse(data);
             const indexCart = dataArr.findIndex(c => c.id === Number(id));
-            const cartProducts = dataArr[indexCart].productos;
-            const cartFiltered = cartProducts.filter(p => p.id !== Number(id_prod))
-            await fs.promises.writeFile(`./${this.nombre}`, JSON.stringify(cartFiltered));
+            dataArr[indexCart].productos = dataArr[indexCart].productos.filter(p => p.id !== Number(id_prod))
+            await fs.promises.writeFile(`./${this.nombre}`, JSON.stringify(dataArr));
             console.log(`Se elimino el objeto con el siguiente ID: ${id_prod} del carrito con ID: ${id}`);
         } catch (error){
             console.log(`No se ha podido eliminar el objeto: ${error}`);

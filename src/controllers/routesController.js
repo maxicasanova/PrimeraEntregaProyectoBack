@@ -109,7 +109,7 @@ const postProdCarrito =  async (req, res) => {
 
 const deleteProdCarrito = async (req, res) => {
     const id = req.params.id;
-    const id_prod = req.params.id;
+    const id_prod = req.params.id_prod;
     try {
         await carritos.deleteProdById(id, id_prod);
         res.sendStatus(200);
